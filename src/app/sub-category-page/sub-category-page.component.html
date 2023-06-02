@@ -1,0 +1,67 @@
+<section>
+    
+    <span class="select-category">
+        <mat-form-field class="mat-select" *ngIf="categories" appearance="fill">
+            <mat-label>Категория</mat-label>
+            <mat-select [disabled]="loading" [(ngModel)]="seleted_category" (ngModelChange)="findSubCategories()">
+                <mat-option 
+                *ngFor="let category of categories" 
+                [value]="category._id"
+                [routerLink]="['/sub-categories']"
+                [queryParams]="{category: category._id}" 
+                >{{category.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </span>
+
+    <span class="button-span">
+        <button *ngIf="change" mat-raised-button color="primary" (click)="saveOrder(sub_categories)">Сохранить</button>
+    </span>
+    <table class="demo" *ngIf="!loading && sub_categories">
+        <tbody>
+        <tr *ngFor="let sub_category of sub_categories; let i = index">
+            <td class="position">
+                <mat-icon *ngIf="i !== 0" 
+                (click)="changePosition(sub_categories, i, i-1)"
+                class="add icon"
+                > expand_less
+                </mat-icon>
+            </td>
+            <td>{{i+1}}</td>
+            <td class="position">
+                <mat-icon *ngIf="i+1 !== sub_categories.length" 
+                (click)="changePosition(sub_categories, i, i+1)"
+                class="add icon"
+                >expand_more
+                </mat-icon>
+            </td>
+            <td
+            class="edit"
+            [ngClass]="{hide: sub_category.hide}"
+            [routerLink]="['/sub-category']"
+            [queryParams]="{_id: sub_category._id}" 
+            >{{sub_category.name.ru}}
+            </td>
+            <td>
+                <mat-icon class="no-hide-icon icon" *ngIf="!sub_category.hide">cloud_queue</mat-icon>
+                <mat-icon class="hide-icon icon" *ngIf="sub_category.hide">cloud_off</mat-icon>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h1 *ngIf="!loading && !sub_categories">Выберите категорию!</h1>
+    <br>
+    <mat-icon 
+    *ngIf="!loading && sub_categories && seleted_category"
+    class="add"
+    [routerLink]="['/sub-category']"
+    [queryParams]="{category: seleted_category}" 
+    >add</mat-icon>
+
+
+    <ng-container *ngIf="loading">
+        <br><br>
+        <mat-spinner ></mat-spinner>
+    </ng-container>
+</section>

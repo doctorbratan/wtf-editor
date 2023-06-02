@@ -1,0 +1,58 @@
+<span class="id">
+    <button 
+    class="mat-button"
+     mat-stroked-button color="link"
+     [routerLink]="['/sub-categories']"
+     [queryParams]="{category: category}" 
+     >Назад</button>
+    <h1 *ngIf="_id">Подкатегория: <span class="green">{{_id}}</span></h1>
+    <h1 *ngIf="!_id" class="green">Создать подкатегорию</h1>
+    <span></span>
+</span>
+<section>
+
+    <form [formGroup]="name" class="edit">
+        <h2>Категория</h2>
+        <mat-form-field class="example-full-width">
+            <mat-label>RU</mat-label>
+            <input matInput required formControlName="ru">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>ENG</mat-label>
+            <input matInput required formControlName="en">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>MD</mat-label>
+            <input matInput required formControlName="md">
+        </mat-form-field>
+    </form>
+
+    <mat-checkbox class="example-margin" color="warn" [(ngModel)]="hide">Скрыть</mat-checkbox>
+
+    <div class="buttons">
+        <button 
+        class="mat-button"
+        *ngIf="!_id"
+        mat-raised-button color="accent" 
+        [disabled]="!name.valid || pennding"
+        (click)="create()"
+        >Создать</button>
+        &nbsp;
+        <button
+        class="mat-button"
+        *ngIf="_id"
+        mat-raised-button color="primary" 
+        [disabled]="!name.valid || pennding"
+        (click)="patch()"
+        >Редактировать</button>
+        &nbsp;
+        <button 
+        class="mat-button"  
+        mat-raised-button color="warn"
+        *ngIf="_id"
+        [disabled]="pennding"
+        (click)="delete()"
+        >Удалить</button>
+    </div>
+
+</section>
