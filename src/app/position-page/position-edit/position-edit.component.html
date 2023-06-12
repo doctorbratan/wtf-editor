@@ -26,13 +26,14 @@
         (change)="onImageUpload($event)"
         #image
         >
+        <h2>Рекомендуемый рамер <br> 1000x1000 px</h2>
         <button
          mat-raised-button color="primary"
          (click)="triggerImageClick()"
          [disabled]="pennding"
          type="button"
         >Загрузить</button>
-        
+        <br>
     </div>
 
     <form [formGroup]="name" class="edit">

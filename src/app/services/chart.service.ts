@@ -13,17 +13,17 @@ export class ChartService {
   getChart(date: string): Observable<any> {
 
     if (date === "today") {
-      return this.http.get<any>(`${environment.apiURL}/api/2606/chart/today`)
+      return this.http.get<any>(`${environment.apiURL}/api/wtf/chart/today`)
     } else if (date === "yesterday") {
-      return this.http.get<any>(`${environment.apiURL}/api/2606/chart/yesterday`)
+      return this.http.get<any>(`${environment.apiURL}/api/wtf/chart/yesterday`)
     } else if (date === "week") {
-      return this.http.get<any>(`${environment.apiURL}/api/2606/chart/week`)
+      return this.http.get<any>(`${environment.apiURL}/api/wtf/chart/week`)
     } else if (date === "month") {
-      return this.http.get<any>(`${environment.apiURL}/api/2606/chart/month`)
+      return this.http.get<any>(`${environment.apiURL}/api/wtf/chart/month`)
     } else if (date === "year") {
-      return this.http.get<any>(`${environment.apiURL}/api/2606/chart/year`)
+      return this.http.get<any>(`${environment.apiURL}/api/wtf/chart/year`)
     } else {
-      return this.http.get<any>(`${environment.apiURL}/api/2606/chart/today`)
+      return this.http.get<any>(`${environment.apiURL}/api/wtf/chart/today`)
     }
   }
 
