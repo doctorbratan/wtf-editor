@@ -44,7 +44,7 @@ export class PositionService {
     const date = moment().format();
 
     if (position.imageUpload) {
-      fd.append('image', position.imageUpload, `${date}` )
+      fd.append('image', position.imageUpload, `${date}_${_id}` )
     }
 
     const data = {
