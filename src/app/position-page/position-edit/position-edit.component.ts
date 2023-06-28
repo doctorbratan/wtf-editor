@@ -322,9 +322,9 @@ unZip(data: any) {
 
   this.name.setValue({ru: data.name.ru, en: data.name.en, md: data.name.md})
 
-  if (data.image) {
+  if (data.img) {
     setTimeout(() => {
-      this.Image = data.image
+      this.Image = data.img.url
     }, 300);
   }
 
